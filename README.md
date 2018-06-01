@@ -30,10 +30,10 @@ _Game displays the current number of moves a user has made._
 ### Interface Design
 
 **Styling:**
-_Application uses CSS to style components for the game._
+_Application uses [CSS](http://udacity.github.io/frontend-nanodegree-styleguide/css.html) to style components for the game._
 
 **Usability:**
-_All application components are usable across modern desktop, tablet, and phone browsers._
+_All application components are usable across modern desktop, tablet, and phone browsers.[Udacity's HTML Styling Guide](http://udacity.github.io/frontend-nanodegree-styleguide/index.html)_
 
 ### Documentation
 
@@ -45,3 +45,6 @@ _Comments are present and effectively explain longer code procedure when necessa
 
 **Code Quality:**
 _Code is formatted with consistent, logical, and easy-to-read formatting as described in the [Udacity JavaScript Style Guide](http://udacity.github.io/frontend-nanodegree-styleguide/javascript.html)._
+
+**Git Requirements:**
+_[Udacity's Git Requirements](https://udacity.github.io/git-styleguide/)_

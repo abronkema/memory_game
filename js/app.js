@@ -1,7 +1,16 @@
 /*
  * Create a list that holds all of your cards
  */
-
+const allCards = [
+    "fa-diamond", "fa-diamond",
+    "fa-paper-plane-o", "fa-paper-plane-o",
+    "fa-anchor", "fa-anchor",
+    "fa-bolt", "fa-bolt",
+    "fa-cube", "fa-cube",
+    "fa-leaf", "fa-leaf",
+    "fa-bicycle", "fa-bicycle",
+    "fa-bomb", "fa-bomb",
+];
 
 /*
  * Display the cards on the page
@@ -38,9 +47,18 @@ function shuffle(array) {
  */
 
  const cardDeck = document.querySelectorAll('.card');
+ const openCards = [];
 
  cardDeck.forEach(function(card) {
-    card.addEventListener('click', function() {
+     // set up an event listener for a card, if clicked...
+    card.addEventListener('click', function(event) {
+        console.log(event); //!Remove this
+        // ... display card's symbol by adding class 'open' and 'show'
+        // TODO put this in another function that you can call from this one
         card.classList.add('open', 'show');
-    });
+        // add the card to an array of open cards
+        // TODO put this in another function that you can call from this one
+        openCards.push(card);
+        console.log(openCards); //!Remove this
+    }); 
  });

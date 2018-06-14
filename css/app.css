@@ -107,3 +107,6 @@ h1 {
     float: right;
     cursor: pointer;
 }
+.disabled {
+    pointer-events: none;
+}

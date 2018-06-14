@@ -1,16 +1,20 @@
 /*
  * Create a list that holds all of your cards
  */
-const allCards = [
-    "fa-diamond", "fa-diamond",
-    "fa-paper-plane-o", "fa-paper-plane-o",
-    "fa-anchor", "fa-anchor",
-    "fa-bolt", "fa-bolt",
-    "fa-cube", "fa-cube",
-    "fa-leaf", "fa-leaf",
-    "fa-bicycle", "fa-bicycle",
-    "fa-bomb", "fa-bomb",
+const cards = [
+    "fa fa-diamond", "fa fa-diamond",
+    "fa fa-paper-plane-o", "fa fa-paper-plane-o",
+    "fa fa-anchor", "fa fa-anchor",
+    "fa fa-bolt", "fa fa-bolt",
+    "fa fa-cube", "fa fa-cube",
+    "fa fa-leaf", "fa fa-leaf",
+    "fa fa-bicycle", "fa fa-bicycle",
+    "fa fa-bomb", "fa fa-bomb",
 ];
+
+const cardContainer = document.querySelector('.deck');
+const cardDeck = document.querySelectorAll('.card');
+const openCards = [];
 
 /*
  * Display the cards on the page
@@ -18,6 +22,16 @@ const allCards = [
  *   - loop through each card and create its HTML
  *   - add each card's HTML to the page
  */
+
+//programmatically create the cards
+// function createCards(cards) {
+//     for (let i = 0; i < cards.length; i++) {
+//         let newCard = document.createElement('li');
+//         cardContainer.appendChild(newCard);
+//         newCard.classList.add("card");
+//     }
+// }
+
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
@@ -46,19 +60,16 @@ function shuffle(array) {
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
 
- const cardDeck = document.querySelectorAll('.card');
- const openCards = [];
+
 
  cardDeck.forEach(function(card) {
      // set up an event listener for a card, if clicked...
     card.addEventListener('click', function(event) {
-        console.log(event); //!Remove this
-        // ... display card's symbol by adding class 'open' and 'show'
-        // TODO put this in another function that you can call from this one
-        card.classList.add('open', 'show');
-        // add the card to an array of open cards
-        // TODO put this in another function that you can call from this one
+        if (openCards.length < 2) {
         openCards.push(card);
-        console.log(openCards); //!Remove this
+        card.classList.add('open', 'show', 'disabled'); //thanks @Adam-Im for the 'disabled' class advice
+        console.log(openCards.length);
+        }
     }); 
  });
+

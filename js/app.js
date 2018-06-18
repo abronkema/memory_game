@@ -14,7 +14,7 @@ const cards = [
 
 const cardContainer = document.querySelector('.deck');
 const cardDeck = document.querySelectorAll('.card');
-const openCards = [];
+let openCards = [];
 
 /*
  * Display the cards on the page
@@ -62,14 +62,60 @@ function shuffle(array) {
 
 
 
- cardDeck.forEach(function(card) {
-     // set up an event listener for a card, if clicked...
-    card.addEventListener('click', function(event) {
-        if (openCards.length < 2) {
-        openCards.push(card);
-        card.classList.add('open', 'show', 'disabled'); //thanks @Adam-Im for the 'disabled' class advice
-        console.log(openCards.length);
-        }
-    }); 
- });
+//  cardDeck.forEach(function(card) {
+//      // set up an event listener for a card, if clicked...
+//     card.addEventListener('click', function(event) {
+//         if (openCards.length < 2) {
+//         openCards.push(card);
+//         card.classList.add('open', 'show', 'disabled'); //thanks @Adam-IN for the 'disabled' class advice
+//         console.log(openCards.length);
+//         }
+//     }); 
+//  });
 
+//display cards when clicked
+cardContainer.addEventListener('click', function(event) {
+    const clickTarget = event.target;
+    if (clickTarget.classList.contains('card') && openCards.length < 2){
+        showCard(clickTarget);
+        addOpenCards(clickTarget);
+        if (openCards.length == 2) {
+            checkForMatch();
+        }
+    }
+});
+
+function showCard(clickTarget) {
+    clickTarget.classList.add('open', 'show');
+}
+
+function addOpenCards(clickTarget) {
+    openCards.push(clickTarget);
+}
+
+function checkForMatch() {
+    if (
+        openCards[0].firstElementChild.className ===
+        openCards[1].firstElementChild.className
+    ) {
+        openCards[0].classList.add('match');
+        openCards[1].classList.add('match');
+        openCards = [];
+    } else {
+        console.log("Not a match :(");
+        openCards = [];
+    }
+}
+
+
+//add card to openCards array
+
+/* 
+* check if the cards in openCards array match,
+* if they do match, 
+*    add them to matchedCards array
+*    clear the openCards array
+* if they do not match, 
+*   remove the open & show classes
+*   clear the openCards array
+*/

@@ -102,9 +102,13 @@ function checkForMatch() {
         openCards[1].classList.add('match');
         openCards = [];
     } else {
-        console.log("Not a match :(");
+        flipCards();
         openCards = [];
     }
+}
+
+function flipCards(card) {
+    cardDeck.classList.remove('open', 'show');
 }
 
 

@@ -8,7 +8,8 @@
 ## Shoutouts
 
 - Matthew Cranford's [walkthrough](https://matthewcranford.com/memory-game-walkthrough-part-1-setup/) helped clarify so much of the process.
-- Slack User _@Adam-IN (FEND)_ helped me through some of the .toggle() uses, specifically adding a `.disabled` class with `pointer-events: none` to prevent double-clicking. 
+- Slack User _@Adam-IN (FEND)_ helped me through some of the .toggle() uses, specifically adding a `.disabled` class with `pointer-events: none` to prevent double-clicking.
+- [Fisher-Yates YouTube Walkthrough](https://www.youtube.com/watch?v=tLxBwSL3lPQ) by [Adam Khoury](https://www.youtube.com/channel/UCpzRDg0orQBZFBPzeXm1yNg)
 
 ## Project Requirements
 

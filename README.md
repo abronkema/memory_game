@@ -5,6 +5,11 @@
 - Font Awesome (4.6.1)
 - Google's Coda font
 
+## Shoutouts
+
+- Matthew Cranford's [walkthrough](https://matthewcranford.com/memory-game-walkthrough-part-1-setup/) helped clarify so much of the process.
+- Slack User _@Adam-IN (FEND)_ helped me through some of the .toggle() uses, specifically adding a `.disabled` class with `pointer-events: none` to prevent double-clicking. 
+
 ## Project Requirements
 
 ### Game Behavior

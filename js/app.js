@@ -11,9 +11,11 @@ const cards = [
     "fa fa-bicycle", "fa fa-bicycle",
     "fa fa-bomb", "fa fa-bomb",
 ];
-
+//grab our entire deck, holding our 4x4 layout of cards
 const cardContainer = document.querySelector('.deck');
+//grab the individual card elements
 const cardDeck = document.querySelectorAll('.card');
+//our temp array to hold clicked cards
 let openCards = [];
 
 /*
@@ -61,65 +63,48 @@ function shuffle(array) {
  */
 
 
-
-//  cardDeck.forEach(function(card) {
-//      // set up an event listener for a card, if clicked...
-//     card.addEventListener('click', function(event) {
-//         if (openCards.length < 2) {
-//         openCards.push(card);
-//         card.classList.add('open', 'show', 'disabled'); //thanks @Adam-IN for the 'disabled' class advice
-//         console.log(openCards.length);
-//         }
-//     }); 
-//  });
-
-//display cards when clicked
+//display cards when clicked, with the Event Listener on the entire deck, instead of individual items
 cardContainer.addEventListener('click', function(event) {
-    const clickTarget = event.target;
-    if (clickTarget.classList.contains('card') && openCards.length < 2){
+    const clickTarget = event.target; 
+//validate click target is a card, and that temp array doesn't have 2 cards
+    if (clickTarget.classList.contains('card') && openCards.length < 2) { 
         showCard(clickTarget);
         addOpenCards(clickTarget);
+//once the temp array has 2 cards, check to see if they match
         if (openCards.length == 2) {
             checkForMatch();
         }
     }
 });
-
+//adding the classes needed to display cards
 function showCard(clickTarget) {
     clickTarget.classList.add('open', 'show');
 }
-
+//push clicked card to temp array
 function addOpenCards(clickTarget) {
     openCards.push(clickTarget);
 }
-
+//check that the cards in temp array match
 function checkForMatch() {
     if (
+//check the <i> element, which is the first child element of the card that's clicked
         openCards[0].firstElementChild.className ===
         openCards[1].firstElementChild.className
     ) {
+//if both cards have the same icon, add matching class and clear the temp array
         openCards[0].classList.add('match');
         openCards[1].classList.add('match');
         openCards = [];
     } else {
-        flipCards();
+//if the cards do not match, wait 1s and remove the open/show classes to "flip" them over
+        setTimeout(function() {
+        flipCards(openCards[0]);
+        flipCards(openCards[1]);
         openCards = [];
+        }, 1000);
     }
 }
-
+//removing the classes from cards when they don't match in the temp array
 function flipCards(card) {
-    cardDeck.classList.remove('open', 'show');
+    card.classList.remove('open', 'show');
 }
-
-
-//add card to openCards array
-
-/* 
-* check if the cards in openCards array match,
-* if they do match, 
-*    add them to matchedCards array
-*    clear the openCards array
-* if they do not match, 
-*   remove the open & show classes
-*   clear the openCards array
-*/

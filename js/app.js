@@ -11,11 +11,11 @@ const cards = [
     "fa fa-bicycle", "fa fa-bicycle",
     "fa fa-bomb", "fa fa-bomb",
 ];
-//grab our entire deck, holding our 4x4 layout of cards
+// grab our entire deck, holding our 4x4 layout of cards
 const cardContainer = document.querySelector('.deck');
-//grab the individual card elements
+// grab the individual card elements
 const cardDeck = document.querySelectorAll('.card');
-//our temp array to hold clicked cards
+// our temp array to hold clicked cards
 let openCards = [];
 
 /*
@@ -63,40 +63,40 @@ function shuffle(array) {
  */
 
 
-//display cards when clicked, with the Event Listener on the entire deck, instead of individual items
+// display cards when clicked, with the Event Listener on the entire deck, instead of individual items
 cardContainer.addEventListener('click', function(event) {
     const clickTarget = event.target; 
-//validate click target is a card, and that temp array doesn't have 2 cards
+// validate click target is a card, and that temp array doesn't have 2 cards
     if (clickTarget.classList.contains('card') && openCards.length < 2) { 
         showCard(clickTarget);
         addOpenCards(clickTarget);
-//once the temp array has 2 cards, check to see if they match
+// once the temp array has 2 cards, check to see if they match
         if (openCards.length == 2) {
             checkForMatch();
         }
     }
 });
-//adding the classes needed to display cards
+// adding the classes needed to display cards
 function showCard(clickTarget) {
     clickTarget.classList.add('open', 'show');
 }
-//push clicked card to temp array
+// push clicked card to temp array
 function addOpenCards(clickTarget) {
     openCards.push(clickTarget);
 }
-//check that the cards in temp array match
+// check that the cards in temp array match
 function checkForMatch() {
     if (
-//check the <i> element, which is the first child element of the card that's clicked
+// check the <i> element, which is the first child element of the card that's clicked
         openCards[0].firstElementChild.className ===
         openCards[1].firstElementChild.className
     ) {
-//if both cards have the same icon, add matching class and clear the temp array
+// if both cards have the same icon, add matching class and clear the temp array
         openCards[0].classList.add('match');
         openCards[1].classList.add('match');
         openCards = [];
     } else {
-//if the cards do not match, wait 1s and remove the open/show classes to "flip" them over
+// if the cards do not match, wait 1s and remove the open/show classes to "flip" them over
         setTimeout(function() {
         flipCards(openCards[0]);
         flipCards(openCards[1]);
@@ -104,7 +104,16 @@ function checkForMatch() {
         }, 1000);
     }
 }
-//removing the classes from cards when they don't match in the temp array
+// removing the classes from cards when they don't match in the temp array
 function flipCards(card) {
     card.classList.remove('open', 'show');
 }
+/* randomize the icons to "shuffle" the deck, thanks to Matthew Cranford
+https://matthewcranford.com/memory-game-walkthrough-part-4-shuffling-decks/
+*/
+function shuffleCards() {
+// grab all the cards in the deck, turn the NodeList into an array for shuffle()
+    const cardsToShuffle = Array.from(document.querySelectorAll('.deck li'));
+    const shuffledCards = shuffle(cardsToShuffle);
+}
+shuffleCards();

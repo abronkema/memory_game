@@ -11,6 +11,7 @@ const cards = [
     "fa fa-bicycle", "fa fa-bicycle",
     "fa fa-bomb", "fa fa-bomb",
 ];
+
 // grab our entire deck, holding our 4x4 layout of cards
 const cardContainer = document.querySelector('.deck');
 // grab the individual card elements
@@ -25,7 +26,21 @@ let openCards = [];
  *   - add each card's HTML to the page
  */
 
-//programmatically create the cards
+ /* randomize the icons to "shuffle" the deck, thanks to Matthew Cranford
+https://matthewcranford.com/memory-game-walkthrough-part-4-shuffling-decks/
+*/
+function shuffleCards() {
+    // grab all the cards in the deck, turn the NodeList into an array for shuffle()
+        const cardsToShuffle = Array.from(document.querySelectorAll('.deck li'));
+        const shuffledCards = shuffle(cardsToShuffle);
+    //append shuffled cards to the deck
+        for (card of shuffledCards) {
+            cardContainer.append(card);
+        }
+    }
+shuffleCards();
+
+//TODO: programmatically generate the cards using the list of icons
 // function createCards(cards) {
 //     for (let i = 0; i < cards.length; i++) {
 //         let newCard = document.createElement('li');
@@ -108,12 +123,3 @@ function checkForMatch() {
 function flipCards(card) {
     card.classList.remove('open', 'show');
 }
-/* randomize the icons to "shuffle" the deck, thanks to Matthew Cranford
-https://matthewcranford.com/memory-game-walkthrough-part-4-shuffling-decks/
-*/
-function shuffleCards() {
-// grab all the cards in the deck, turn the NodeList into an array for shuffle()
-    const cardsToShuffle = Array.from(document.querySelectorAll('.deck li'));
-    const shuffledCards = shuffle(cardsToShuffle);
-}
-shuffleCards();

@@ -1,6 +1,8 @@
 /*
  * Create a list that holds all of your cards
  */
+
+ // TODO use this array of Font Awesome icon classes to generate the cards programmatically. 
 const cards = [
     "fa fa-diamond", "fa fa-diamond",
     "fa fa-paper-plane-o", "fa fa-paper-plane-o",
@@ -18,6 +20,9 @@ const cardContainer = document.querySelector('.deck');
 const cardDeck = document.querySelectorAll('.card');
 // our temp array to hold clicked cards
 let openCards = [];
+// declaring move counter variable
+let moves = 0;
+
 
 /*
  * Display the cards on the page
@@ -65,19 +70,6 @@ function shuffle(array) {
     return array;
 }
 
-
-/*
- * set up the event listener for a card. If a card is clicked:
- *  - display the card's symbol (put this functionality in another function that you call from this one)
- *  - add the card to a *list* of "open" cards (put this functionality in another function that you call from this one)
- *  - if the list already has another card, check to see if the two cards match
- *    + if the cards do match, lock the cards in the open position (put this functionality in another function that you call from this one)
- *    + if the cards do not match, remove the cards from the list and hide the card's symbol (put this functionality in another function that you call from this one)
- *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
- *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
- */
-
-
 // display cards when clicked, with the Event Listener on the entire deck, instead of individual items
 cardContainer.addEventListener('click', function(event) {
     const clickTarget = event.target; 
@@ -118,6 +110,8 @@ function checkForMatch() {
         openCards = [];
         }, 1000);
     }
+    moves += 1;
+    console.log(moves); // !Remove this
 }
 // removing the classes from cards when they don't match in the temp array
 function flipCards(card) {

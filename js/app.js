@@ -1,3 +1,5 @@
+/*jshint esversion: 6*/
+
 /*
  * Create a list that holds all of your cards
  */
@@ -39,7 +41,7 @@ function shuffleCards() {
         const cardsToShuffle = Array.from(document.querySelectorAll('.deck li'));
         const shuffledCards = shuffle(cardsToShuffle);
     //append shuffled cards to the deck
-        for (card of shuffledCards) {
+        for (let card of shuffledCards) {
             cardContainer.append(card);
         }
     }
@@ -110,10 +112,18 @@ function checkForMatch() {
         openCards = [];
         }, 1000);
     }
-    moves += 1;
-    console.log(moves); // !Remove this
+    moveCounter();
 }
 // removing the classes from cards when they don't match in the temp array
 function flipCards(card) {
     card.classList.remove('open', 'show');
+}
+/*
+When a set of cards (2) are flipped and checkForMatch is invoked: 
+the move counter should increment and 
+reduce the star rating for every X number of moves
+*/
+function moveCounter(move) {
+    moves += 1;
+    console.log(moves); // !Remove this
 }

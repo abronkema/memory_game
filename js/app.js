@@ -14,7 +14,7 @@ const cards = [
     "fa fa-leaf", "fa fa-leaf",
     "fa fa-bicycle", "fa fa-bicycle",
     "fa fa-bomb", "fa fa-bomb",
-];
+]
 
 // grab our entire deck, holding our 4x4 layout of cards
 const cardContainer = document.querySelector('.deck');
@@ -24,6 +24,8 @@ const cardDeck = document.querySelectorAll('.card');
 let openCards = [];
 // declaring move counter variable
 let moves = 0;
+// select the .stars ul element
+const starsContainer = document.querySelector('.stars');
 
 
 /*
@@ -46,6 +48,8 @@ function shuffleCards() {
         }
     }
 shuffleCards();
+
+generateStars();
 
 //TODO: programmatically generate the cards using the list of icons
 // function createCards(cards) {
@@ -126,4 +130,9 @@ reduce the star rating for every X number of moves
 function moveCounter(move) {
     moves += 1;
     console.log(moves); // !Remove this
+}
+
+function generateStars() {
+    let star = document.createElement("li");
+    starsContainer.appendChild(star);
 }

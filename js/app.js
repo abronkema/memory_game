@@ -14,7 +14,7 @@ const cards = [
     "fa fa-leaf", "fa fa-leaf",
     "fa fa-bicycle", "fa fa-bicycle",
     "fa fa-bomb", "fa fa-bomb",
-]
+];
 
 // grab our entire deck, holding our 4x4 layout of cards
 const cardContainer = document.querySelector('.deck');
@@ -26,6 +26,8 @@ let openCards = [];
 let moves = 0;
 // select the .stars ul element
 const starsContainer = document.querySelector('.stars');
+// select the Moves counter
+let movesCountDisplay = document.querySelector('.moves').textContent;
 
 
 /*
@@ -129,7 +131,7 @@ reduce the star rating for every X number of moves
 */
 function moveCounter(move) {
     moves += 1;
-    console.log(moves); // !Remove this
+    document.querySelector('.moves').textContent = moves;
 }
 
 function generateStars() {

@@ -28,6 +28,8 @@ let moves = 0;
 const starsContainer = document.querySelector('.stars');
 // select the Moves counter
 let movesCountDisplay = document.querySelector('.moves').textContent;
+// select the Reset button
+const resetButton = document.querySelector('.restart');
 
 
 /*
@@ -138,3 +140,23 @@ function generateStars() {
     let star = document.createElement("li");
     starsContainer.appendChild(star);
 }
+
+/* 
+@Sachin on Slack provided this helpful walkthrough
+create an array of all elements with .card class
+remove any classes making them visible
+reset moves variable
+*/
+// TODO reset stars
+function resetGame() {
+    const resetCards = Array.from(cardDeck);
+    for (card of resetCards) {
+        card.classList.remove('open', 'show', 'match');
+    }
+}
+
+resetButton.addEventListener('click', function() {
+    resetGame();
+    document.querySelector('.moves').textContent = 0;
+    moves = 0;
+});

@@ -55,8 +55,8 @@ function shuffleCards() {
     }
 shuffleCards();
 
-// generateStars();
-removeStars();
+generateStars();
+// removeStars();
 //TODO: programmatically generate the cards using the list of icons
 // function createCards(cards) {
 //     for (let i = 0; i < cards.length; i++) {
@@ -170,10 +170,10 @@ function resetGame() {
     for (card of resetCards) {
         card.classList.remove('open', 'show', 'match');
     }
+    movesCountDisplay.innerText = 0;
+    moves = 0;
 }
 
 resetButton.addEventListener('click', function() {
     resetGame();
-    movesCountDisplay.innerText = 0;
-    moves = 0;
 });

@@ -26,6 +26,8 @@ let openCards = [];
 let moves = 0;
 // select the .stars ul element
 const starsContainer = document.querySelector('.stars');
+// select the stars children
+let starsContainerChildren = starsContainer.children;
 // select the Moves counter
 let movesCountDisplay = document.querySelector('.moves');
 // select the Reset button
@@ -53,8 +55,8 @@ function shuffleCards() {
     }
 shuffleCards();
 
-generateStars();
-
+// generateStars();
+removeStars();
 //TODO: programmatically generate the cards using the list of icons
 // function createCards(cards) {
 //     for (let i = 0; i < cards.length; i++) {
@@ -91,6 +93,10 @@ cardContainer.addEventListener('click', function(event) {
         if (openCards.length == 2) {
             checkForMatch();
         }
+    }
+    if (moves === 10 || moves === 20 || moves === 30 || moves === 40) {
+        //add star
+        generateStars();
     }
 });
 // adding the classes needed to display cards
@@ -136,9 +142,20 @@ function moveCounter(move) {
     movesCountDisplay.innerText = moves;
 }
 
+function removeStars() {
+       while (starsContainerChildren.length > 0) {
+        for (let i=0; i<starsContainerChildren.length; i++){
+            starsContainerChildren[i].remove();
+           }
+       }
+}
+
 function generateStars() {
-    let star = document.createElement("li");
-    starsContainer.appendChild(star);
+    let starItem = document.createElement('i');
+    starItem.className = 'fa fa-star';
+    let starListEl = document.createElement('li');
+    starListEl.appendChild(starItem);
+    starsContainer.appendChild(starListEl);
 }
 
 /* 

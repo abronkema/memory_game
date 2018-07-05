@@ -32,6 +32,18 @@ let starsContainerChildren = starsContainer.children;
 let movesCountDisplay = document.querySelector('.moves');
 // select the Reset button
 const resetButton = document.querySelector('.restart');
+// calculate num of stars to generate based on move count
+let movesRating = function() {
+    if (moves <= 15) {
+        return 4;
+    } if (moves > 15 && moves < 20) {
+        return 3;
+    } if (moves >= 20 && moves < 25) {
+        return 2;
+    } else {
+        return 1;
+    }
+};
 
 
 /*
@@ -94,10 +106,7 @@ cardContainer.addEventListener('click', function(event) {
             checkForMatch();
         }
     }
-    if (moves === 10 || moves === 20 || moves === 30 || moves === 40) {
-        //add star
-        generateStars();
-    }
+    generateStars();
 });
 // adding the classes needed to display cards
 function showCard(clickTarget) {
@@ -150,12 +159,14 @@ function removeStars() {
        }
 }
 
-function generateStars() {
+function generateStars(moves) {
     let starItem = document.createElement('i');
     starItem.className = 'fa fa-star';
     let starListEl = document.createElement('li');
+    for (var i = 0; i <= movesRating; i++) {
     starListEl.appendChild(starItem);
     starsContainer.appendChild(starListEl);
+    }
 }
 
 /* 

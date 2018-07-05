@@ -36,9 +36,9 @@ const resetButton = document.querySelector('.restart');
 let movesRating = function() {
     if (moves <= 15) {
         return 4;
-    } if (moves > 15 && moves < 20) {
+    } else if (moves > 15 && moves < 20) {
         return 3;
-    } if (moves >= 20 && moves < 25) {
+    } else if (moves >= 20 && moves < 25) {
         return 2;
     } else {
         return 1;
@@ -187,4 +187,5 @@ function resetGame() {
 
 resetButton.addEventListener('click', function() {
     resetGame();
+    shuffleCards();
 });

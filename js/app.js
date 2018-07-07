@@ -16,35 +16,16 @@ const cards = [
     "fa fa-bomb", "fa fa-bomb",
 ];
 
-// grab our entire deck, holding our 4x4 layout of cards
 const cardContainer = document.querySelector('.deck');
-// grab the individual card elements
 const cardDeck = document.querySelectorAll('.card');
 // our temp array to hold clicked cards
 let openCards = [];
-// declaring move counter variable
 let moves = 0;
-// select the .stars ul element
+let movesRating = 4;
 const starsContainer = document.querySelector('.stars');
-// select the stars children
 let starsContainerChildren = starsContainer.children;
-// select the Moves counter
 let movesCountDisplay = document.querySelector('.moves');
-// select the Reset button
 const resetButton = document.querySelector('.restart');
-// calculate num of stars to generate based on move count
-let movesRating = function() {
-    if (moves <= 15) {
-        return 4;
-    } else if (moves > 15 && moves < 20) {
-        return 3;
-    } else if (moves >= 20 && moves < 25) {
-        return 2;
-    } else {
-        return 1;
-    }
-};
-
 
 /*
  * Display the cards on the page
@@ -66,7 +47,6 @@ function shuffleCards() {
         }
     }
 shuffleCards();
-
 generateStars();
 // removeStars();
 //TODO: programmatically generate the cards using the list of icons
@@ -104,9 +84,9 @@ cardContainer.addEventListener('click', function(event) {
 // once the temp array has 2 cards, check to see if they match
         if (openCards.length == 2) {
             checkForMatch();
+            calculateMoveRating();
         }
     }
-    generateStars();
 });
 // adding the classes needed to display cards
 function showCard(clickTarget) {
@@ -151,21 +131,42 @@ function moveCounter(move) {
     movesCountDisplay.innerText = moves;
 }
 
-function removeStars() {
-       while (starsContainerChildren.length > 0) {
-        for (let i=0; i<starsContainerChildren.length; i++){
-            starsContainerChildren[i].remove();
-           }
-       }
-}
+function calculateMoveRating() {
+    if (moves <= 15) {
+        movesRating = 4;
+        console.log("movesRating: " + movesRating + ", moves: " + moves);
+        return 4;
+    } else if (moves > 15 && moves < 20) {
+        movesRating = 3;
+        console.log("movesRating: " + movesRating + ", moves: " + moves);
+        return 3;
+    } else if (moves >= 20 && moves < 25) {
+        movesRating = 2;
+        console.log("movesRating: " + movesRating + ", moves: " + moves);
+        return 2;
+    } else {
+        movesRating = 1;
+        console.log("movesRating: " + movesRating + ", moves: " + moves);
+        return 1;
+    }
+};
+
+// function removeStars() {
+//        while (starsContainerChildren.length > 0) {
+//         for (let i=0; i<starsContainerChildren.length; i++){
+//             starsContainerChildren[i].remove();
+//            }
+//        }
+// }
 
 function generateStars(moves) {
     let starItem = document.createElement('i');
     starItem.className = 'fa fa-star';
     let starListEl = document.createElement('li');
-    for (var i = 0; i <= movesRating; i++) {
-    starListEl.appendChild(starItem);
-    starsContainer.appendChild(starListEl);
+    for (var i = 1; i <= movesRating; i++) {
+        starListEl.appendChild(starItem);
+        starsContainer.appendChild(starListEl);
+        console.log(i);
     }
 }
 

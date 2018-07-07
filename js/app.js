@@ -160,10 +160,10 @@ function calculateMoveRating() {
 // }
 
 function generateStars(moves) {
-    let starItem = document.createElement('i');
-    starItem.className = 'fa fa-star';
-    let starListEl = document.createElement('li');
     for (var i = 1; i <= movesRating; i++) {
+        let starItem = document.createElement('i');
+        starItem.className = 'fa fa-star';
+        let starListEl = document.createElement('li');
         starListEl.appendChild(starItem);
         starsContainer.appendChild(starListEl);
         console.log(i);

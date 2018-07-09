@@ -135,29 +135,31 @@ function calculateMoveRating() {
     if (moves <= 15) {
         movesRating = 4;
         console.log("movesRating: " + movesRating + ", moves: " + moves);
+        removeStars();
         return 4;
     } else if (moves > 15 && moves < 20) {
         movesRating = 3;
         console.log("movesRating: " + movesRating + ", moves: " + moves);
+        removeStars();
         return 3;
     } else if (moves >= 20 && moves < 25) {
         movesRating = 2;
         console.log("movesRating: " + movesRating + ", moves: " + moves);
+        removeStars();
         return 2;
     } else {
         movesRating = 1;
         console.log("movesRating: " + movesRating + ", moves: " + moves);
+        removeStars();
         return 1;
     }
 };
 
-// function removeStars() {
-//        while (starsContainerChildren.length > 0) {
-//         for (let i=0; i<starsContainerChildren.length; i++){
-//             starsContainerChildren[i].remove();
-//            }
-//        }
-// }
+function removeStars() {
+    for (let i = 1; i < movesRating; i++) {
+        console.log(i);
+    }
+}
 
 function generateStars(moves) {
     for (var i = 1; i <= movesRating; i++) {

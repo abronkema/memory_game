@@ -136,28 +136,34 @@ function calculateMoveRating() {
         movesRating = 4;
         console.log("movesRating: " + movesRating + ", moves: " + moves);
         removeStars();
+        generateStars();
         return 4;
     } else if (moves > 15 && moves < 20) {
         movesRating = 3;
         console.log("movesRating: " + movesRating + ", moves: " + moves);
         removeStars();
+        generateStars();
         return 3;
     } else if (moves >= 20 && moves < 25) {
         movesRating = 2;
         console.log("movesRating: " + movesRating + ", moves: " + moves);
         removeStars();
+        generateStars();
         return 2;
     } else {
         movesRating = 1;
         console.log("movesRating: " + movesRating + ", moves: " + moves);
         removeStars();
+        generateStars();
         return 1;
     }
-};
+}
 
 function removeStars() {
-    for (let i = 1; i < movesRating; i++) {
-        console.log(i);
+    while (starsContainerChildren.length > 0) {
+        for (let i = 0; i < starsContainerChildren.length; i++) {
+            starsContainerChildren[i].remove();
+        }
     }
 }
 
@@ -168,7 +174,7 @@ function generateStars(moves) {
         let starListEl = document.createElement('li');
         starListEl.appendChild(starItem);
         starsContainer.appendChild(starListEl);
-        console.log(i);
+        console.log("generateStars() is " + i);
     }
 }
 
@@ -191,4 +197,5 @@ function resetGame() {
 resetButton.addEventListener('click', function() {
     resetGame();
     shuffleCards();
+    calculateMoveRating();
 });

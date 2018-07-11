@@ -26,6 +26,7 @@ const starsContainer = document.querySelector('.stars');
 let starsContainerChildren = starsContainer.children;
 let movesCountDisplay = document.querySelector('.moves');
 const resetButton = document.querySelector('.restart');
+const timerDisplay = document.querySelector('.timer');
 
 /*
  * Display the cards on the page
@@ -199,3 +200,4 @@ resetButton.addEventListener('click', function() {
     shuffleCards();
     calculateMoveRating();
 });
+

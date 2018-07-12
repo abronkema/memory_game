@@ -29,7 +29,8 @@ const resetButton = document.querySelector('.restart');
 const timerDisplay = document.querySelector('.timer');
 const minutesDisplay = document.querySelector('.minutes');
 const secondsDisplay = document.querySelector('.seconds');
-let startTime = new Date().getTime();
+let totalSeconds = 0;
+let timerUpdate = setInterval(playTimer, 1000);
 
 /*
  * Display the cards on the page
@@ -80,7 +81,8 @@ function shuffle(array) {
 
 // display cards when clicked, with the Event Listener on the entire deck, instead of individual items
 cardContainer.addEventListener('click', function(event) {
-    const clickTarget = event.target; 
+    const clickTarget = event.target;
+
 // validate click target is a card, and that temp array doesn't have 2 cards
     if (clickTarget.classList.contains('card') && openCards.length < 2) { 
         showCard(clickTarget);
@@ -181,10 +183,20 @@ function generateStars(moves) {
     }
 }
 
-let timerID = setInterval(function() {
-    let timeDiff = Date.now() - startTime;
-    
-}, 200);
+function playTimer() {
+    totalSeconds++;
+    let minutes = Math.floor(totalSeconds/60);
+    let seconds = Math.floor(totalSeconds - (minutes*60));
+    //TODO if totalSeconds < 10, prepend with a zero (to force 2-digits)
+    minutesDisplay.innerHTML = minutes;
+    secondsDisplay.innerHTML = seconds;
+}
+
+function resetTimer() {
+    minutesDisplay.innerHTML = "00";
+    secondsDisplay.innerHTML = "00";
+    totalSeconds = 0;
+}
 
 /* 
 @Sachin on Slack provided this helpful walkthrough
@@ -205,5 +217,6 @@ resetButton.addEventListener('click', function() {
     resetGame();
     shuffleCards();
     calculateMoveRating();
+    resetTimer();
 });
 

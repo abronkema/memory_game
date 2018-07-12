@@ -27,6 +27,9 @@ let starsContainerChildren = starsContainer.children;
 let movesCountDisplay = document.querySelector('.moves');
 const resetButton = document.querySelector('.restart');
 const timerDisplay = document.querySelector('.timer');
+const minutesDisplay = document.querySelector('.minutes');
+const secondsDisplay = document.querySelector('.seconds');
+let startTime = new Date().getTime();
 
 /*
  * Display the cards on the page
@@ -175,9 +178,13 @@ function generateStars(moves) {
         let starListEl = document.createElement('li');
         starListEl.appendChild(starItem);
         starsContainer.appendChild(starListEl);
-        console.log("generateStars() is " + i);
     }
 }
+
+let timerID = setInterval(function() {
+    let timeDiff = Date.now() - startTime;
+    
+}, 200);
 
 /* 
 @Sachin on Slack provided this helpful walkthrough
@@ -185,7 +192,6 @@ create an array of all elements with .card class
 remove any classes making them visible
 reset moves variable
 */
-// TODO reset stars
 function resetGame() {
     const resetCards = Array.from(cardDeck);
     for (card of resetCards) {

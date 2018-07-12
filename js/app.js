@@ -193,7 +193,7 @@ function playTimer() {
 }
 
 function resetTimer() {
-    minutesDisplay.innerHTML = "00";
+    minutesDisplay.innerHTML = "0";
     secondsDisplay.innerHTML = "00";
     totalSeconds = 0;
 }

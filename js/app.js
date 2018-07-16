@@ -87,6 +87,7 @@ function checkForMatch() {
         openCards[0].classList.add('match');
         openCards[1].classList.add('match');
         openCards = [];
+        checkForWin();
     } else {
 // if the cards do not match, wait 1s and remove the open/show classes to "flip" them over
         setTimeout(function() {
@@ -96,6 +97,15 @@ function checkForMatch() {
         }, 1000);
     }
     moveCounter();
+}
+// check to see if the player has won the game
+function checkForWin() {
+    const matchedCards = document.querySelectorAll('.match');
+    const matchedArray = Array.from(matchedCards);
+    if (matchedArray.length === 16) {
+        clearTimeout(timerUpdate);
+        console.log(`You won in ${moves} moves and it took ${minutesDisplay.innerText} minutes and ${secondsDisplay.innerText} seconds!`);
+    }  
 }
 // removing the classes from cards when they don't match in the temp array
 function flipCards(card) {
@@ -113,25 +123,21 @@ function moveCounter(move) {
 function calculateMoveRating() {
     if (moves <= 15) {
         movesRating = 4;
-        console.log("movesRating: " + movesRating + ", moves: " + moves);
         removeStars();
         generateStars();
         return 4;
     } else if (moves > 15 && moves < 20) {
         movesRating = 3;
-        console.log("movesRating: " + movesRating + ", moves: " + moves);
         removeStars();
         generateStars();
         return 3;
     } else if (moves >= 20 && moves < 25) {
         movesRating = 2;
-        console.log("movesRating: " + movesRating + ", moves: " + moves);
         removeStars();
         generateStars();
         return 2;
     } else {
         movesRating = 1;
-        console.log("movesRating: " + movesRating + ", moves: " + moves);
         removeStars();
         generateStars();
         return 1;

@@ -1,9 +1,4 @@
 /*jshint esversion: 6*/
-
-/*
- * Create a list that holds all of your cards
- */
-
  // TODO use this array of Font Awesome icon classes to generate the cards programmatically. 
 const cards = [
     "fa fa-diamond", "fa fa-diamond",
@@ -15,7 +10,6 @@ const cards = [
     "fa fa-bicycle", "fa fa-bicycle",
     "fa fa-bomb", "fa fa-bomb",
 ];
-
 const cardContainer = document.querySelector('.deck');
 const cardDeck = document.querySelectorAll('.card');
 // our temp array to hold clicked cards
@@ -31,14 +25,6 @@ const minutesDisplay = document.querySelector('.minutes');
 const secondsDisplay = document.querySelector('.seconds');
 let totalSeconds = 0;
 let timerUpdate = setInterval(playTimer, 1000);
-
-/*
- * Display the cards on the page
- *   - shuffle the list of cards using the provided "shuffle" method below
- *   - loop through each card and create its HTML
- *   - add each card's HTML to the page
- */
-
  /* randomize the icons to "shuffle" the deck, thanks to Matthew Cranford
 https://matthewcranford.com/memory-game-walkthrough-part-4-shuffling-decks/
 */
@@ -53,17 +39,6 @@ function shuffleCards() {
     }
 shuffleCards();
 generateStars();
-// removeStars();
-//TODO: programmatically generate the cards using the list of icons
-// function createCards(cards) {
-//     for (let i = 0; i < cards.length; i++) {
-//         let newCard = document.createElement('li');
-//         cardContainer.appendChild(newCard);
-//         newCard.classList.add("card");
-//     }
-// }
-
-
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
@@ -78,7 +53,6 @@ function shuffle(array) {
 
     return array;
 }
-
 // display cards when clicked, with the Event Listener on the entire deck, instead of individual items
 cardContainer.addEventListener('click', function(event) {
     const clickTarget = event.target;
@@ -136,7 +110,6 @@ function moveCounter(move) {
     moves += 1;
     movesCountDisplay.innerText = moves;
 }
-
 function calculateMoveRating() {
     if (moves <= 15) {
         movesRating = 4;
@@ -164,7 +137,6 @@ function calculateMoveRating() {
         return 1;
     }
 }
-
 function removeStars() {
     while (starsContainerChildren.length > 0) {
         for (let i = 0; i < starsContainerChildren.length; i++) {
@@ -172,7 +144,6 @@ function removeStars() {
         }
     }
 }
-
 function generateStars(moves) {
     for (var i = 1; i <= movesRating; i++) {
         let starItem = document.createElement('i');
@@ -182,7 +153,6 @@ function generateStars(moves) {
         starsContainer.appendChild(starListEl);
     }
 }
-
 function playTimer() {
     totalSeconds++;
     let minutes = Math.floor(totalSeconds/60);
@@ -195,13 +165,11 @@ function playTimer() {
     secondsDisplay.innerHTML = seconds;
     }
 }
-
 function resetTimer() {
     minutesDisplay.innerHTML = "0";
     secondsDisplay.innerHTML = "00";
     totalSeconds = 0;
 }
-
 /* 
 @Sachin on Slack provided this helpful walkthrough
 create an array of all elements with .card class
@@ -216,7 +184,6 @@ function resetGame() {
     movesCountDisplay.innerText = 0;
     moves = 0;
 }
-
 resetButton.addEventListener('click', function() {
     resetGame();
     shuffleCards();

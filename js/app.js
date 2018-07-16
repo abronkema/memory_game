@@ -30,7 +30,6 @@ const timerDisplay = document.querySelector('.timer');
 const minutesDisplay = document.querySelector('.minutes');
 const secondsDisplay = document.querySelector('.seconds');
 let totalSeconds = 0;
-let timerUpdate = setInterval(playTimer, 1000);
 
 /*
  * Display the cards on the page
@@ -184,12 +183,17 @@ function generateStars(moves) {
 }
 
 function playTimer() {
+    let timerUpdate = setInterval(playTimer, 1000);
     totalSeconds++;
     let minutes = Math.floor(totalSeconds/60);
     let seconds = Math.floor(totalSeconds - (minutes*60));
-    //TODO if totalSeconds < 10, prepend with a zero (to force 2-digits)
+        if (seconds < 10) { //because I can't figure out an alt to toFixed() for a non-float
+        minutesDisplay.innerHTML = minutes;
+        secondsDisplay.innerHTML = '0' + seconds;
+    } else {
     minutesDisplay.innerHTML = minutes;
     secondsDisplay.innerHTML = seconds;
+    }
 }
 
 function resetTimer() {

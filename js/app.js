@@ -30,6 +30,7 @@ const timerDisplay = document.querySelector('.timer');
 const minutesDisplay = document.querySelector('.minutes');
 const secondsDisplay = document.querySelector('.seconds');
 let totalSeconds = 0;
+let timerUpdate = setInterval(playTimer, 1000);
 
 /*
  * Display the cards on the page
@@ -183,7 +184,6 @@ function generateStars(moves) {
 }
 
 function playTimer() {
-    let timerUpdate = setInterval(playTimer, 1000);
     totalSeconds++;
     let minutes = Math.floor(totalSeconds/60);
     let seconds = Math.floor(totalSeconds - (minutes*60));

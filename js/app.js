@@ -24,7 +24,7 @@ const timerDisplay = document.querySelector('.timer');
 const minutesDisplay = document.querySelector('.minutes');
 const secondsDisplay = document.querySelector('.seconds');
 let totalSeconds = 0;
-let timerUpdate = setInterval(playTimer, 1000);
+let timer = setInterval(playTimer, 1000);
  /* randomize the icons to "shuffle" the deck, thanks to Matthew Cranford
 https://matthewcranford.com/memory-game-walkthrough-part-4-shuffling-decks/
 */
@@ -87,7 +87,6 @@ function checkForMatch() {
         openCards[0].classList.add('match');
         openCards[1].classList.add('match');
         openCards = [];
-        checkForWin();
     } else {
 // if the cards do not match, wait 1s and remove the open/show classes to "flip" them over
         setTimeout(function() {
@@ -97,6 +96,7 @@ function checkForMatch() {
         }, 1000);
     }
     moveCounter();
+    checkForWin();
 }
 // removing the classes from cards when they don't match in the temp array
 function flipCards(card) {
@@ -167,7 +167,7 @@ function checkForWin() {
     const matchedCards = document.querySelectorAll('.match');
     const matchedArray = Array.from(matchedCards);
     if (matchedArray.length === 16) {
-        clearInterval(timerUpdate);
+        clearInterval(timer);
         console.log(`You won in ${moves} moves and it took ${minutesDisplay.innerText} minutes and ${secondsDisplay.innerText} seconds! You earned ${movesRating} stars!`);
     }  
 }
@@ -175,7 +175,7 @@ function resetTimer() {
     minutesDisplay.innerHTML = "0";
     secondsDisplay.innerHTML = "00";
     totalSeconds = 0;
-    let timerUpdate = setInterval(playTimer, 1000);
+    timer = setInterval(playTimer, 1000);
 }
 /* 
 @Sachin on Slack provided this helpful walkthrough
@@ -195,6 +195,7 @@ resetButton.addEventListener('click', function() {
     resetGame();
     shuffleCards();
     calculateMoveRating();
+    clearInterval(timer);
     resetTimer();
 });
 

@@ -98,15 +98,6 @@ function checkForMatch() {
     }
     moveCounter();
 }
-// check to see if the player has won the game
-function checkForWin() {
-    const matchedCards = document.querySelectorAll('.match');
-    const matchedArray = Array.from(matchedCards);
-    if (matchedArray.length === 16) {
-        clearTimeout(timerUpdate);
-        console.log(`You won in ${moves} moves and it took ${minutesDisplay.innerText} minutes and ${secondsDisplay.innerText} seconds!`);
-    }  
-}
 // removing the classes from cards when they don't match in the temp array
 function flipCards(card) {
     card.classList.remove('open', 'show');
@@ -163,18 +154,28 @@ function playTimer() {
     totalSeconds++;
     let minutes = Math.floor(totalSeconds/60);
     let seconds = Math.floor(totalSeconds - (minutes*60));
-        if (seconds < 10) { //because I can't figure out an alt to toFixed() for a non-float
-        minutesDisplay.innerHTML = minutes;
-        secondsDisplay.innerHTML = '0' + seconds;
-    } else {
+    if (seconds < 10) { //because I can't figure out an alt to toFixed() for a non-float
+    minutesDisplay.innerHTML = minutes;
+    secondsDisplay.innerHTML = '0' + seconds;
+} else {
     minutesDisplay.innerHTML = minutes;
     secondsDisplay.innerHTML = seconds;
-    }
+}
+}
+// check to see if the player has won the game
+function checkForWin() {
+    const matchedCards = document.querySelectorAll('.match');
+    const matchedArray = Array.from(matchedCards);
+    if (matchedArray.length === 16) {
+        clearInterval(timerUpdate);
+        console.log(`You won in ${moves} moves and it took ${minutesDisplay.innerText} minutes and ${secondsDisplay.innerText} seconds! You earned ${movesRating} stars!`);
+    }  
 }
 function resetTimer() {
     minutesDisplay.innerHTML = "0";
     secondsDisplay.innerHTML = "00";
     totalSeconds = 0;
+    let timerUpdate = setInterval(playTimer, 1000);
 }
 /* 
 @Sachin on Slack provided this helpful walkthrough

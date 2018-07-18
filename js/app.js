@@ -169,7 +169,12 @@ function checkForWin() {
     if (matchedArray.length === 16) {
         clearInterval(timer);
         console.log(`You won in ${moves} moves and it took ${minutesDisplay.innerText} minutes and ${secondsDisplay.innerText} seconds! You earned ${movesRating} stars!`);
+        popModal();
     }  
+}
+function popModal() {
+    const modalBox = document.querySelector('.modal');
+    modalBox.style.display = "block";
 }
 function resetTimer() {
     minutesDisplay.innerHTML = "0";

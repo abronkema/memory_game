@@ -121,10 +121,14 @@ h1 {
     border-radius: 10px;
     border: 3px solid #02ccba;
     width: 50%;
-    height: 50%;
+    height: 25%;
     z-index: 1;
 }
 
 .modal_content {
     text-align: center;
+}
+
+.modal i {
+    font-size: 2rem;
 }

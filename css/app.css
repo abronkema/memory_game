@@ -119,7 +119,7 @@ h1 {
     position: fixed;
     background: rgba(255, 255, 255, 0.9);
     border-radius: 10px;
-    border: 3px solid #02ccba;
+    border: 3px solid rgba(46, 61, 73, .5);
     width: 50%;
     height: 25%;
     z-index: 1;
@@ -131,4 +131,18 @@ h1 {
 
 .modal i {
     font-size: 2rem;
+}
+
+#btn_icon {
+    font-size: .75rem;
+    padding: 5px;
+}
+
+.play_again {
+    font-size: .75rem;
+}
+
+button {
+    border: 2px solid rgba(46, 61, 73, .5);
+    border-radius: 5px;
 }

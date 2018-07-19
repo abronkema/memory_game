@@ -25,6 +25,12 @@ const minutesDisplay = document.querySelector('.minutes');
 const secondsDisplay = document.querySelector('.seconds');
 let totalSeconds = 0;
 let timer = setInterval(playTimer, 1000);
+const modalBox = document.querySelector('.modal');
+const modalContent = modalBox.firstElementChild;
+const modalCongratsText = modalContent.querySelector('.grats');
+const modalStarText = modalContent.querySelector('.stars');
+const modalTimeText = modalContent.querySelector('.time');
+
  /* randomize the icons to "shuffle" the deck, thanks to Matthew Cranford
 https://matthewcranford.com/memory-game-walkthrough-part-4-shuffling-decks/
 */
@@ -173,8 +179,13 @@ function checkForWin() {
     }  
 }
 function popModal() {
-    const modalBox = document.querySelector('.modal');
     modalBox.style.display = "block";
+    updateModalInfo();
+}
+function updateModalInfo() {
+    modalCongratsText.innerText = `Congratulations! You won in ${moves} moves!`;
+    modalStarText.innerText = `You earned ${movesRating} stars.`;
+    modalTimeText.innerText = `It took you ${minutesDisplay.innerText} minutes and ${secondsDisplay.innerText} seconds.`;
 }
 function resetTimer() {
     minutesDisplay.innerHTML = "0";
